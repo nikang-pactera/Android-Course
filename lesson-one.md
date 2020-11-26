@@ -53,6 +53,7 @@ D:\android\android studio
 
 
 下图！
+<br>
 ![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606136842934-ad6330a5-20a3-475a-b288-b67fb76a53ba.png#align=left&display=inline&height=621&margin=%5Bobject%20Object%5D&originHeight=621&originWidth=834&size=0&status=done&style=none&width=834)
 
 
@@ -77,6 +78,7 @@ D:\android\android studio
 
 
 创建一个新虚拟设备
+<br>
 ![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606136842947-7121d4c6-1177-479e-af13-f0a1acb23758.png#align=left&display=inline&height=606&margin=%5Bobject%20Object%5D&originHeight=606&originWidth=782&size=0&status=done&style=none&width=782)
 
 
@@ -100,9 +102,11 @@ D:\android\android studio
 
 
 看见这个画面
+<br>
 ![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606136842972-fb5fe7af-f68a-4234-86c5-aab833493ce2.png#align=left&display=inline&height=864&margin=%5Bobject%20Object%5D&originHeight=864&originWidth=467&size=0&status=done&style=none&width=467)
 
 
 默认即为helloworld ！第一个程序完成!
 不用任何操作！
+<br>
 ![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606136842933-b1709a99-34e9-4be9-93d4-be28eb553ce1.png#align=left&display=inline&height=864&margin=%5Bobject%20Object%5D&originHeight=864&originWidth=467&size=0&status=done&style=none&width=467)
