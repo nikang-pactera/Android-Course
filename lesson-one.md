@@ -6,7 +6,7 @@
 
 
 3.下载后进行安装
-将按照下列步骤进行：
+将按照下列步骤进行：  
 ![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606136842862-7eee7fe6-d350-4fbb-b04c-45c55c3139ea.png#align=left&display=inline&height=485&margin=%5Bobject%20Object%5D&originHeight=485&originWidth=623&size=0&status=done&style=none&width=623)
 ![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606136842914-cd37318c-9a31-42c7-a422-28a1b9b234ac.png#align=left&display=inline&height=485&margin=%5Bobject%20Object%5D&originHeight=485&originWidth=623&size=0&status=done&style=none&width=623)
 
@@ -17,11 +17,15 @@ D:\android\android studio
 
 ![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606136842959-efd6cd91-b984-4625-ac4a-d6a17cca055c.png#align=left&display=inline&height=407&margin=%5Bobject%20Object%5D&originHeight=407&originWidth=518&size=0&status=done&style=none&width=518)
 ![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606136842947-eaf250bc-8bea-4eca-8761-76dffe0a8033.png#align=left&display=inline&height=485&margin=%5Bobject%20Object%5D&originHeight=485&originWidth=623&size=0&status=done&style=none&width=623)
+<br>
 到此基础部分已经完成。
 
 4.下面一定要逐步完成，一步一步仔细操作：
 点选第二个
-![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606136842875-9b4eedcd-c15c-455e-8162-bc16a1f6e392.png#align=left&display=inline&height=197&margin=%5Bobject%20Object%5D&originHeight=197&originWidth=457&size=0&status=done&style=none&width=457)
+<br>
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606136842875-9b4eedcd-c15c-455e-8162-bc16a1f6e392.png#align=left&display=inline&height=197&margin=%5Bobject%20Object%5D&originHeight=197&originWidth=457&size=0&status=done&style=none&width=457)  
+<br>
 然后会有各种提示，下一步到这里
 安装选这个
 >**custom**
