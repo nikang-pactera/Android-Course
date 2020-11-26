@@ -148,6 +148,8 @@ D:\android\android studio
 
 
 2.安装后，查看是否安装成功；进入cmd窗口，输入java -version
+
+
 ![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606137328628-c944490a-5510-40d3-87c8-be868936e607.png#align=left&display=inline&height=83&margin=%5Bobject%20Object%5D&originHeight=83&originWidth=553&size=0&status=done&style=none&width=553)
 
 ## ******JDK环境变量配置：******
@@ -165,3 +167,247 @@ Windows7 电脑，在变量值最后输入%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;�
 变量名：CLASSPATH  变量值：%JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar
 ![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606137328580-6e13de62-25a0-48df-83f2-4a41b35d7fad.png#align=left&display=inline&height=143&margin=%5Bobject%20Object%5D&originHeight=143&originWidth=553&size=0&status=done&style=none&width=553)
 
+
+# Android Studio Gradle 配置
+
+**先说明原因：
+gradle资源包是通过android studio 远程访问安卓的gradle仓库进行下载的
+难免会出现网络不佳，以及被墙的情况（并不是所有人都会遇到）**
+
+
+## 1.现象说明
+gradle失败会显示这个界面
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606136534831-23082d77-9318-4612-bfea-8c617b17c293.png#align=left&display=inline&height=165&margin=%5Bobject%20Object%5D&originHeight=165&originWidth=762&size=0&status=done&style=none&width=762)
+
+
+## 2.首先确认自己的gradle版本
+
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606136534902-53204309-f2cf-44bb-bb9a-bb322c5d6d98.png#align=left&display=inline&height=431&margin=%5Bobject%20Object%5D&originHeight=431&originWidth=1584&size=0&status=done&style=none&width=1584)
+
+
+## 3.我们打开Android Studio默认下载Gradle的位置：
+上图中的Url
+进行查看下载的Gradle文件，记住版本号，如下图所示：
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606136534904-f33e311c-9525-4c09-906c-8f68e5aa632d.png#align=left&display=inline&height=334&margin=%5Bobject%20Object%5D&originHeight=334&originWidth=1045&size=0&status=done&style=none&width=1045)
+不成功的原因即是上图压缩包没有下载成功
+首先，点击进入这个网站：[https://services.gradle.org/distributions/](https://services.gradle.org/distributions/)
+或者直接打开上面的Url即可（去掉反斜杠即可）
+找到和自己本版相同的Gradle-all.zip文件找到自己版本进行下载
+下载完成之后
+将上图所有的下载的文件都删掉
+然后直接把我们自己下载的zip文件粘贴进去
+重启Android Studio
+正常来说就会发现已经可以正常使用了。
+
+
+## 4.如果还是不行，进行下面操作：
+在 project 的 build.gradle中修改如下：
+```
+allprojects {
+    repositories {
+        //jcenter()
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+    }
+}
+```
+
+
+## 特别说明
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606136552241-5a878bfb-cc5c-4396-babe-7a99783229d8.png#align=left&display=inline&height=176&margin=%5Bobject%20Object%5D&originHeight=176&originWidth=821&size=0&status=done&style=none&width=821)
+>`路径不能有中文 、符号 、空格（尤其是电脑账户名包含这些）`
+
+
+# 新建项目
+
+**新建项目（含Module创建）**
+
+## （1）创建项目
+进入AS，左上角单击File->New->New Project,如下：
+
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606137948527-6afe05d5-ceda-4932-b2af-c8dfc0e4f46e.png#align=left&display=inline&height=282&margin=%5Bobject%20Object%5D&originHeight=282&originWidth=533&size=0&status=done&style=none&width=533)
+
+
+进入以下界面：
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606137948527-8b77c473-9df0-444f-ad3f-bc69966457b4.png#align=left&display=inline&height=743&margin=%5Bobject%20Object%5D&originHeight=741&originWidth=1052&size=0&status=done&style=none&width=1055)
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606137948537-1b9fd1df-8841-412e-89ee-d2643c903747.png#align=left&display=inline&height=664&margin=%5Bobject%20Object%5D&originHeight=739&originWidth=1067&size=0&status=done&style=none&width=958)
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606137948577-c79ac25f-45ac-4ac9-8d0b-a6479b536535.png#align=left&display=inline&height=564&margin=%5Bobject%20Object%5D&originHeight=661&originWidth=1031&size=0&status=done&style=none&width=879)
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606137948580-25f25db7-d4e6-4e18-9705-820ac03eda73.png#align=left&display=inline&height=755&margin=%5Bobject%20Object%5D&originHeight=738&originWidth=1062&size=0&status=done&style=none&width=1087)
+完成。
+
+
+## （2）主界面介绍
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606137948618-fd136099-8666-488e-a1e1-078774b55f51.png#align=left&display=inline&height=727&margin=%5Bobject%20Object%5D&originHeight=683&originWidth=1216&size=0&status=done&style=none&width=1294)
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606137948583-b25b6b5d-fd06-4471-87e9-09a64f57d217.png#align=left&display=inline&height=369&margin=%5Bobject%20Object%5D&originHeight=369&originWidth=312&size=0&status=done&style=none&width=312)
+
+
+## （3）预览
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606137948589-f814cd12-0147-4c51-aaab-b0796555c8a5.png#align=left&display=inline&height=890&margin=%5Bobject%20Object%5D&originHeight=890&originWidth=1915&size=0&status=done&style=none&width=1915)
+ 
+## （4）创建Module
+对于中大型项目AS提供了Module（即模块），主要便于项目分层以及分离逻辑，使项目逻辑更加清晰也便于项目维护。创建模块如下：
+
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606137948586-0e33f755-693c-4210-a737-17e0a6401dd2.png#align=left&display=inline&height=311&margin=%5Bobject%20Object%5D&originHeight=311&originWidth=672&size=0&status=done&style=none&width=672)
+
+
+进入以下页面： 
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606137948585-b4e0c503-16ff-4fbc-9e29-24d06c99f982.png#align=left&display=inline&height=725&margin=%5Bobject%20Object%5D&originHeight=725&originWidth=1064&size=0&status=done&style=none&width=1064)
+
+
+进入下一步，完成创建后如下： 
+
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606137948591-2d615c30-3446-4c6c-aa0e-67edcc0505e0.png#align=left&display=inline&height=414&margin=%5Bobject%20Object%5D&originHeight=414&originWidth=430&size=0&status=done&style=none&width=430)
+
+
+关于Module的创建及使用可以参考 [另一篇进阶文章](http://www.cnblogs.com/xiaoshubao/p/5599073.html)。
+
+
+## 二、代码混淆
+AS项目由Gradle构建及管理项目，应用相关的很多信息都可以在这里设置，如下：
+
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606137948605-af08c5e4-4da2-4948-a8bc-b215d4dbf625.png#align=left&display=inline&height=778&margin=%5Bobject%20Object%5D&originHeight=778&originWidth=1223&size=0&status=done&style=none&width=1223)
+
+
+AS中进行代码混淆需要在build.gradle文件和proguard-rules.pro文件中进行设置（可以通过jd-gui工具对比混淆前后效果）：
+ 
+ 
+### （1）build.gradle文件
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606137948579-9da9f92c-b979-4bd5-ad45-cb1b0ce1a109.png#align=left&display=inline&height=146&margin=%5Bobject%20Object%5D&originHeight=146&originWidth=786&size=0&status=done&style=none&width=786)
+ 
+minifyEnabled:表示是否开启混淆，默认为false
+proguardFiles：混淆配置文件，一般就采用项目中默认的proguard-rules.pro文件。
+ 
+### （2）proguard-rules.pro文件
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606137948587-b1e86bd5-4eab-4b27-8354-9c46e0c8c7c4.png#align=left&display=inline&height=236&margin=%5Bobject%20Object%5D&originHeight=236&originWidth=1168&size=0&status=done&style=none&width=1168)
+
+
+混淆设置，具体可参考[progurad官网](http://proguard.sourceforge.net/)。
+ 
+ 
+注意图中红框部分，因为所有jar包（此处已JAR包混淆举例，APP混淆与此类似）都要求有对外接口（没有对外接口的模块一般也没什么意义），有多种种方式设置对外接口类：
+ 
+#### a:-keep public class *，例如：
+ 
+```java
+-keep public class * {
+public protected *;
+}
+```
+ 
+#### b:如上图所示。
+ 
+因为一个模块一般有很多类文件，混淆时我们希望除对外接口类的其他所有类文件的类名也进行混淆，那么就可以单独创建一个基类或接口，让对外的接口类继承该基类或接口。
+ 
+#### c:-keep public class XXX,特定类不混淆，例如：
+ 
+```java
+-keep public class xiaoshubao.player.UserLogin{
+public protected *;
+}
+```
+
+
+### 常用调试功能及应用分析相关
+#### （1）创建模拟器（创建过程省略）
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606137948584-8d923b3b-9543-4018-b691-aa5b92ffb175.png#align=left&display=inline&height=168&margin=%5Bobject%20Object%5D&originHeight=168&originWidth=855&size=0&status=done&style=none&width=855)
+
+
+#### （2）运行模拟器
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606137948606-ca334657-1eff-4612-8d78-00de660a6a44.png#align=left&display=inline&height=999&margin=%5Bobject%20Object%5D&originHeight=999&originWidth=567&size=0&status=done&style=none&width=567)
+ 
+#### （3）应用分析相关
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606137948611-4e22a14e-7007-4d12-8ccf-2375287d0b1d.png#align=left&display=inline&height=298&margin=%5Bobject%20Object%5D&originHeight=328&originWidth=1869&size=0&status=done&style=none&width=1699)
+ 
+ 
+1.日志输出，如上图所示。
+2.内存分析
+ 
+ 
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606137948627-70fc0c90-389f-4f24-b91d-3426732e6fcc.png#align=left&display=inline&height=310&margin=%5Bobject%20Object%5D&originHeight=346&originWidth=1899&size=0&status=done&style=none&width=1700)
+
+
+#### a:
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606137948613-400f3370-9c52-4586-b870-759fe2c00bcc.png#align=left&display=inline&height=298&margin=%5Bobject%20Object%5D&originHeight=330&originWidth=1887&size=0&status=done&style=none&width=1702)
+
+
+#### b:
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606137948594-ddb497ef-625d-43f2-b364-49fef3851dc5.png#align=left&display=inline&height=982&margin=%5Bobject%20Object%5D&originHeight=982&originWidth=1430&size=0&status=done&style=none&width=1430)
+
+
+#### c：
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606137948596-7fe84f7c-1143-44e8-9127-be45d951aa24.png#align=left&display=inline&height=235&margin=%5Bobject%20Object%5D&originHeight=309&originWidth=1887&size=0&status=done&style=none&width=1437)
+
+
+#### d:内存信息采集
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606137948606-f6494ce7-72d9-4db0-9936-9564d07256bc.png#align=left&display=inline&height=820&margin=%5Bobject%20Object%5D&originHeight=975&originWidth=1657&size=0&status=done&style=none&width=1393)
+
+
+# 布局
+
+## 1. 布局类型
+在`Android`中，共有2类、6种布局方式，分别是：
+
+
+![](//upload-images.jianshu.io/upload_images/944365-d85fdfd5efd9e5be.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp#align=left&display=inline&margin=%5Bobject%20Object%5D&status=done&style=none)
+
+
+## 2. 布局介绍
+
+- 具体介绍
+
+![](//upload-images.jianshu.io/upload_images/944365-6ae8280d95353536.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/900/format/webp#align=left&display=inline&margin=%5Bobject%20Object%5D&status=done&style=none)
+
+示意图
+
+
+本文主要介绍传统的5大布局，关于约束布局`（ConstraintLayout）`具体[点击查看文章](http://blog.csdn.net/guolin_blog/article/details/53122387)
+
+---
+
+## 3. 布局属性
+
+- `Android`的布局属性通过 `XML`配置
+- 下面，主要讲解布局公有属性 & 特有属性
+
+### 3.1 公有属性
+即 5种布局都具备下述属性
+
+- `layout_width` 、`layout_height`
+- `layout_margin`+方位
+- `padding` +方位
+- `gravity`
+- `layout_gravity`
+> `layout_gravity` 一般作用于 LeanerLayout 和 FrameLayout，但此处为了与 `gravity`对比
+
+![](//upload-images.jianshu.io/upload_images/944365-cdf779cdca32a18f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/980/format/webp#)
+
+
+示意图
+
+
+`layout_gravity`：多用于自身控件相对于父控件的位置
+`gravity`：多用于设置父控件里的子控件的位置
+### 3.2 特有属性
+
+- 具体介绍如下
+
+![](//upload-images.jianshu.io/upload_images/944365-83ad9724fa36abe3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp#)
+
+
+示意图
+
+
+### 3.3 特别注意
+
+- 5个布局元素可相互嵌套使用，从而实现各种不同的效果
+- 关于 线性布局（LinearLayout）的权重属性layout_weight请看[文章](http://mobile.51cto.com/abased-375428.htm)
