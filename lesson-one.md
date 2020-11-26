@@ -358,14 +358,14 @@ public protected *;
 在`Android`中，共有2类、6种布局方式，分别是：
 
 
-![](//upload-images.jianshu.io/upload_images/944365-d85fdfd5efd9e5be.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp#align=left&display=inline&margin=%5Bobject%20Object%5D&status=done&style=none)
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606373480919-305c7982-047c-4295-9b71-9a84aa1d275f.png#align=left&display=inline&height=800&margin=%5Bobject%20Object%5D&name=1.png&originHeight=800&originWidth=1390&size=126467&status=done&style=none&width=1390)
 
 
 ## 2. 布局介绍
 
 - 具体介绍
 
-![](//upload-images.jianshu.io/upload_images/944365-6ae8280d95353536.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/900/format/webp#align=left&display=inline&margin=%5Bobject%20Object%5D&status=done&style=none)
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606373485235-0bb4448b-3cb7-48b4-b2f7-7518df609c0a.png#align=left&display=inline&height=638&margin=%5Bobject%20Object%5D&name=2.png&originHeight=638&originWidth=900&size=96846&status=done&style=none&width=900)
 
 示意图
 
@@ -389,7 +389,7 @@ public protected *;
 - `layout_gravity`
 > `layout_gravity` 一般作用于 LeanerLayout 和 FrameLayout，但此处为了与 `gravity`对比
 
-![](//upload-images.jianshu.io/upload_images/944365-cdf779cdca32a18f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/980/format/webp#)
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606373490052-0f786c7d-1065-405e-a8e4-e2cd2bcb0cf8.png#align=left&display=inline&height=1881&margin=%5Bobject%20Object%5D&name=3.png&originHeight=1881&originWidth=980&size=137671&status=done&style=none&width=980)
 
 
 示意图
@@ -401,7 +401,7 @@ public protected *;
 
 - 具体介绍如下
 
-![](//upload-images.jianshu.io/upload_images/944365-83ad9724fa36abe3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp#)
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606373496009-5eaa6977-78b6-4ea1-8ad9-340068232441.png#align=left&display=inline&height=950&margin=%5Bobject%20Object%5D&name=4.png&originHeight=950&originWidth=1220&size=171904&status=done&style=none&width=1220)
 
 
 示意图
@@ -411,3 +411,217 @@ public protected *;
 
 - 5个布局元素可相互嵌套使用，从而实现各种不同的效果
 - 关于 线性布局（LinearLayout）的权重属性layout_weight请看[文章](http://mobile.51cto.com/abased-375428.htm)
+
+
+# 常用基本控件
+## 1.TextView
+看到Android中的TextView, 我不禁的想到了iOS开发中的UILabel。从字面意思上看，TextView就是文本视图，只是用来显示文字的。在iOS中就叫做标签，即为UILabel。要想在Activity中显示TextView, 我们需要在相应的布局文件，也就是Activity对应的layout.xml文件去添加相应的控件标签。这些xml标签可以确定控件的位置，大小，颜色等属性。下方是在Activity中显示一个TextView。布局代码如下：
+```xml
+<TextView
+          android:id="@+id/name_text_view"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:textSize="30sp"
+          android:textColor="#be0e0a"
+          android:text="My name is ZeluLi"/>
+```
+
+
+标签<TextView/>代表着我们要在Activity中添加一个个TextView, 标签中可以设置一些属性。
+
+1. android:id属性代表着TextView的Id,也就是TextView的唯一标示，在java代码中我们可以通过findViewById()方法来通过Id获取控件。上述控件的唯一id为name_text_view。
+
+2. android:layout_width属性代表着控件的宽度，该属性的值是match_parent, 表示该控件的宽度与父视图的宽度相同。
+
+3. android:layout_height属性代表着控件的高度，该属性的值是wrap_content,表示控件的高度根据内容的高度进行改变。
+
+4. android:gravity属性代表着TextView中文字对齐方式，有多种方式，我们在此选的是center,居中显示。
+
+5. .android:textSize属性代表着TextView中文字的型号，也就是文字的大小。
+
+6. android:textColor属性设置的是TextView中文字的颜色，属性值是16进制的色值。
+
+7. android:text属性就是用来设置TextView显示的值的。
+
+
+我们如何在Java类，也就是Activity中获取上述控件呢，下方的代码就是使用findViewById()方法通过id获取上述控件，并获取TextView中的值以及设置TextView中的值。具体代码如下。
+
+```java
+TextView myTextView = (TextView) findViewById(R.id.name_text_view);
+String myText = myTextView.getText().toString();
+myTextView.setText(myText + "  Add");
+```
+经过上面的属性的设置，运行工程，你会在Activity中看到如下效果：
+
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606374106090-1a5b9835-2278-42ca-be4c-c20dcd90312c.png#align=left&display=inline&height=264&margin=%5Bobject%20Object%5D&name=1.png&originHeight=264&originWidth=974&size=49846&status=done&style=none&width=974)
+
+
+## 2.Button
+在Android中的按钮就叫Button, 而在iOS中则叫UIButton。其两者的用法极为相似。还是和上面类似，我们需要在Activity对应的布局文件layout.xml中添加一个Button, 具体的xml代码如下所示。<Button/>标签就是代表着Button, 其中的属性和属性值就不做过多的赘述了，上面已经提到了。
+
+```xml
+<Button
+        android:id="@+id/click_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="点我"/>
+```
+在Activity的类中也是使用findViewById来通过Id获取该按钮，获取按钮后我们需要给按钮绑定点击事件。也就是点击按钮要做的事情，下方给出了两中方式，一种是块的形式，一种是委托代理的形式。
+
+
+(1).接口回调的形式绑定点击事件
+```java
+Button button = (Button) findViewById(R.id.click_button);
+button.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        //点击按钮要做的事情
+    }
+});
+```
+
+
+(2)委托代理
+```java
+button.setOnClickListener(this);
+//重写委托回调的方法
+/**
+  * Called when a view has been clicked.
+  *
+  * @param v The view that was clicked.
+  */
+@Override
+public void onClick(View v) {
+    switch (v.getId()){
+        case R.id.click_button:
+            //点击按钮后要做的事情
+            break;
+        default:
+            break;
+    }
+}
+```
+经过上面的步骤就会在TextView下面添加了一个按钮，运行效果如下所示
+
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606374112348-89a65f12-a0e0-4e66-94ad-aa8949cc45d6.png#align=left&display=inline&height=342&margin=%5Bobject%20Object%5D&name=2.png&originHeight=342&originWidth=992&size=43536&status=done&style=none&width=992)
+
+
+## 3.EditText
+接下来要为Activity添加一个输入框，在Android中输入框的类型和标签都是EditText。iOS中的输入框就是UITextField了，其实两者用法类似，其功能都是接收用户输入的数据的。下方是其xml布局方式.
+```xml
+<EditText
+          android:id="@+id/edit_text"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:hint="placeHoder: type something here"
+          android:maxLines="3"/>
+```
+上方EditText标签中比之前多了两个属性：
+(1).android:hint属性后边是一个字符串，其实就是用来占位用的字符串，功能是提示用户该输入框是干嘛的，在iOS开发中叫做Placeholder。
+
+
+(2).android:macLines 用来设置输入框的最大行数。
+在Activity中获取EditText对象，也是通过Id方式，下方代码是获取通过id实例化EditText对象，并获取其中的文本在Toast上显示。
+```java
+EditText myEditText = (EditText) findViewById(R.id.edit_text);
+String inputText = myEditText.getText().toString();
+Toast.makeText(MainActivity.this, inputText, Toast.LENGTH_SHORT).show();
+```
+输入框如下所示：
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606374119264-0c9651c2-aa34-455a-a18e-ae28ad77ea2c.png#align=left&display=inline&height=408&margin=%5Bobject%20Object%5D&name=3.png&originHeight=408&originWidth=982&size=63407&status=done&style=none&width=982)
+
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606374130513-993fa2b6-852d-4d07-aca5-51b237095fb8.png#align=left&display=inline&height=442&margin=%5Bobject%20Object%5D&name=4.png&originHeight=442&originWidth=980&size=42213&status=done&style=none&width=980)
+
+
+## 4.AlterDialog(警告框)
+Toast用来显示提示内容，而AlterDialog是警告框，上面可以有一些控件，比如按钮等。AlterDialog其实就是iOS中的AlterView（在iOS8后有增加了UIAlterController）。下面的代码是初始化AlterDialog并且进行显示的代码，下方的代码是放在点击按钮所触发的方法当中。
+（1）AlterDialog通过AlterDialog的Builder进行创建，在创建的时候会指定该AlterDialog在那个Activity上进行显示。
+（2）通过setTitle方法给AlterDialog设置标题，通过setMessage给AlterDialog设置内容。
+（3）setCancelable()方法，我们在这儿设置的时false，表示弹出的AlterDialog在用户点击返回键是不消失，该值默认是true。
+（4）setPositiveButton()方法是设置点击“确定”按钮时的事件, setNegativeButton是设置点击“取消”按钮的事件。通过Toast来展示事件的点击。
+
+```java
+AlertDialog.Builder alterDialog = new AlertDialog.Builder(MainActivity.this);
+alterDialog.setTitle("提示框");
+alterDialog.setMessage("提示内容");
+alterDialog.setCancelable(false);
+alterDialog.setPositiveButton("好的", new DialogInterface.OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        Toast.makeText(MainActivity.this, "好的", Toast.LENGTH_SHORT).show();
+    }
+});
+alterDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        Toast.makeText(MainActivity.this, "取消", Toast.LENGTH_SHORT).show();
+    }
+});
+alterDialog.show();
+```
+下面就是上面AlterDialog显示后的效果。
+
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606374137149-d98cc0fc-5656-449d-88cc-f7c1b2604aaf.png#align=left&display=inline&height=338&margin=%5Bobject%20Object%5D&name=5.png&originHeight=338&originWidth=872&size=16863&status=done&style=none&width=872)
+
+
+## 5.ProgressBar(进度条)
+进度条，就是平时下载东西常见到表示下载进度的控件。ProgressBar和iOS中的UIProgressView类似，用法也是非常类似的。首先需要在Activity对应的Xml文件中对ProgressBar进行布局和样式的设定。下方是ProgressBar的布局和样式。
+
+```xml
+<ProgressBar
+         android:id="@+id/my_progress_bar"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         style="?android:attr/progressBarStyleHorizontal"
+         android:max="200"/>
+```
+我们可以通过android:max来设定ProgressBar的进度最大值，而style可以给ProgressBar设定不同的样式。ProgressBar有多种样式，可以根据不同的场景来选择不同的样式，下方是可选样式。
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606374142932-a9347288-a9ca-4005-9952-47457eed259d.png#align=left&display=inline&height=538&margin=%5Bobject%20Object%5D&name=6.png&originHeight=538&originWidth=916&size=155524&status=done&style=none&width=916)
+
+
+在xml中配置好ProgressBar之后就可以在代码中通过ID获取，对ProgressBar进行一系列的操作了。下方的代码也是放在按钮的点击事件中，每点击一次进度条的进度就增加10，直到增到最大值时ProgressBar就会变成不可见。变为不可见后，接着就会把进度设置成0。
+
+```java
+ProgressBar myProgressBar = (ProgressBar) findViewById(R.id.my_progress_bar);
+myProgressBar.setProgress(myProgressBar.getProgress()+10);
+if (myProgressBar.getProgress() == myProgressBar.getMax()) {
+    myProgressBar.setVisibility(View.GONE);
+    myProgressBar.setProgress(0);
+} else {
+    myProgressBar.setVisibility(View.VISIBLE);
+}
+```
+## 6.ProgressDialog(进度提示框)
+ProgressDialog说白了就是在AlterDialog上添加Progress, ProgressDialog不需要在xml中进行配置，直接在代码中进行生成即可。下方是在按钮点击的委托代理方法中添加的ProgressDialog，点击按钮时就显示ProgressDialog。
+
+```java
+/**
+  * Called when a view has been clicked.
+  *
+  * @param v The view that was clicked.
+  */
+@Override
+public void onClick(View v) {
+    switch (v.getId()){
+        case R.id.click_button:
+            ProgressDialog myProgressDialog = new ProgressDialog(MainActivity.this);
+            myProgressDialog.setTitle("ProgressDialog");
+            myProgressDialog.setMessage("Loading……");
+            myProgressDialog.setCancelable(true);
+            myProgressDialog.show();
+            break;
+        default:
+            break;
+    }
+}
+```
+运行效果如下：
+
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606374149814-3632206a-38d6-4699-bb12-28c4bda55714.png#align=left&display=inline&height=244&margin=%5Bobject%20Object%5D&name=7.png&originHeight=244&originWidth=832&size=14323&status=done&style=none&width=832)
+
