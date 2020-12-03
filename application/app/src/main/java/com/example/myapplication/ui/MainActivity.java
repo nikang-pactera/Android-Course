@@ -2,7 +2,6 @@ package com.example.myapplication.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
 
@@ -52,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void onItemClick(View v, int position, String item) {
+    public void onItemClick(int position, String item) {
         int index = layoutList.indexOf(item);
         switch (index) {
             case 0:

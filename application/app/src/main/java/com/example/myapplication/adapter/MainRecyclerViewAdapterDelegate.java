@@ -33,7 +33,7 @@ public class MainRecyclerViewAdapterDelegate extends ClickableAdapterDelegate<St
 
     @Override
     public void onItemClick(View view, String item, int position) {
-        mActivity.onItemClick(view, position, item);
+        mActivity.onItemClick(position, item);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
