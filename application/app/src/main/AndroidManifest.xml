@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.myapplication">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".ui.IntentResultActivity"></activity>
+        <activity android:name=".ui.GridLayoutActivity" />
+        <activity android:name=".ui.IntentActivity" />
+        <activity android:name=".ui.ViewPagerActivity" />
+        <activity android:name=".ui.RecyclerViewActivity" />
+        <activity android:name=".ui.ProgressDialogActivity" />
+        <activity android:name=".ui.ProgressBarActivity" />
+        <activity android:name=".ui.EditTextActivity" />
+        <activity android:name=".ui.AlterDialogActivity" />
+        <activity android:name=".ui.ButtonActivity" />
+        <activity android:name=".ui.TextViewActivity" />
+        <activity android:name=".ui.ConstraintLayoutActivity" />
+        <activity android:name=".ui.TabLayoutActivity" />
+        <activity android:name=".ui.RelativeLayoutActivity" />
+        <activity android:name=".ui.AbsoluteLayoutActivity" />
+        <activity android:name=".ui.LinearLayoutActivity" />
+        <activity android:name=".ui.FrameLayoutActivity" />
+        <activity android:name=".ui.UIActivity" />
+        <activity android:name=".ui.LayoutActivity" />
+        <activity android:name=".ui.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
