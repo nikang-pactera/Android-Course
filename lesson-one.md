@@ -352,13 +352,20 @@ public protected *;
 ![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606137948606-f6494ce7-72d9-4db0-9936-9564d07256bc.png#align=left&display=inline&height=820&margin=%5Bobject%20Object%5D&originHeight=975&originWidth=1657&size=0&status=done&style=none&width=1393)
 
 
+### apk简单编译
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606983379773-ded91105-a978-4628-b361-226cebcb1b31.png#align=left&display=inline&height=337&margin=%5Bobject%20Object%5D&name=%E5%9B%BE%E7%89%871.png&originHeight=337&originWidth=407&size=30061&status=done&style=none&width=407)
+
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606983381049-02974e4d-9d2d-4cb0-9ab2-d31870ad9818.png#align=left&display=inline&height=281&margin=%5Bobject%20Object%5D&name=%E5%9B%BE%E7%89%872.png&originHeight=281&originWidth=285&size=35161&status=done&style=none&width=285)
+
+
 # 布局
 
 ## 1. 布局类型
-在`Android`中，共有2类、6种布局方式，分别是：
+在`Android`中，共有2类、7种布局方式，分别是：
 
 
-![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606373480919-305c7982-047c-4295-9b71-9a84aa1d275f.png#align=left&display=inline&height=800&margin=%5Bobject%20Object%5D&name=1.png&originHeight=800&originWidth=1390&size=126467&status=done&style=none&width=1390)
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606983535390-0330b0c5-5974-4526-be0f-d5027359708b.png#align=left&display=inline&height=444&margin=%5Bobject%20Object%5D&name=%E5%9B%BE%E7%89%873.png&originHeight=444&originWidth=895&size=73471&status=done&style=none&width=895)
 
 
 ## 2. 布局介绍
@@ -367,10 +374,8 @@ public protected *;
 
 ![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606373485235-0bb4448b-3cb7-48b4-b2f7-7518df609c0a.png#align=left&display=inline&height=638&margin=%5Bobject%20Object%5D&name=2.png&originHeight=638&originWidth=900&size=96846&status=done&style=none&width=900)
 
-示意图
 
-
-本文主要介绍传统的5大布局，关于约束布局`（ConstraintLayout）`具体[点击查看文章](http://blog.csdn.net/guolin_blog/article/details/53122387)
+本文主要介绍传统的5大布局，关于约束布局`（ConstraintLayout）`具体[点击查看文章](https://segmentfault.com/a/1190000014876944)
 
 ---
 
@@ -596,32 +601,370 @@ if (myProgressBar.getProgress() == myProgressBar.getMax()) {
     myProgressBar.setVisibility(View.VISIBLE);
 }
 ```
-## 6.ProgressDialog(进度提示框)
-ProgressDialog说白了就是在AlterDialog上添加Progress, ProgressDialog不需要在xml中进行配置，直接在代码中进行生成即可。下方是在按钮点击的委托代理方法中添加的ProgressDialog，点击按钮时就显示ProgressDialog。
 
-```java
-/**
-  * Called when a view has been clicked.
-  *
-  * @param v The view that was clicked.
-  */
+
+# RecyclerView
+
+### 优点
+
+
+* view复用：recycle
+* 灵活实现 一个类就可以实现 listview，gridview 效果
+* 自定义 item间隔：通过ItemDecoration，item动画：ItemAnimator
+* 可以实现多种炫酷瀑布流布局 这是 listView 和 gridView 不能实现的
+
+
+### 缺点
+
+
+* 代码量大 代码量相对于lv，rv要多
+* 没有item点击监听器 需要自定义回调接口（点击，长按等）
+
+
+### 代码以及说明
+因为 recyclerView 的 adapter 原生的代码量比较大，而且经常可能会漏一部分内容，所以这里引用第三方的 adapter，需要在 `build.gradle` 中引用
+```
+    implementation 'com.kevin:delegationadapter:2.0.2'
+    // 扩展库，扩展支持了item click、item long click、databinding、load more
+    implementation 'com.kevin:delegationadapter-extras:2.0.2'
+```
+
+下面就是源码了：
+
+
+```
 @Override
-public void onClick(View v) {
-    switch (v.getId()){
-        case R.id.click_button:
-            ProgressDialog myProgressDialog = new ProgressDialog(MainActivity.this);
-            myProgressDialog.setTitle("ProgressDialog");
-            myProgressDialog.setMessage("Loading……");
-            myProgressDialog.setCancelable(true);
-            myProgressDialog.show();
-            break;
-        default:
-            break;
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_recycler_view);
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        //设置布局管理器
+        recyclerView.setLayoutManager(layoutManager);
+        //设置为垂直布局，这也是默认的
+        layoutManager.setOrientation(RecyclerView.VERTICAL);
+
+        DelegationAdapter delegationAdapter = new DelegationAdapter();
+        // 向Adapter中注册委托Adapter
+//        delegationAdapter.addDelegate(new CompanyAdapterDelegate());
+        delegationAdapter.addDelegate(new CNCompanyAdapterDelegate());
+        delegationAdapter.addDelegate(new USCompanyAdapterDelegate());
+
+        //设置Adapter
+        recyclerView.setAdapter(delegationAdapter);
+        //设置增加或删除条目的动画
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        List<String> companies = new ArrayList<>();
+        companies.add("🇨🇳 百度");
+        companies.add("🇨🇳 阿里");
+        companies.add("🇨🇳 腾讯");
+        companies.add("🇺🇸 Google");
+        companies.add("🇺🇸 Facebook");
+        companies.add("🇺🇸 Microsoft");
+
+        // 置数据
+        delegationAdapter.setDataItems(companies);
+    }
+```
+```
+public class CNCompanyAdapterDelegate extends AdapterDelegate<String, CNCompanyAdapterDelegate.ViewHolder> {
+
+    @Override
+    public boolean isForViewType(String item, int position) {
+        return item.contains("🇨🇳");
+    }
+
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+        ViewHolder holder = new ViewHolder(view);
+        return holder;
+    }
+
+    @Override
+    public void onBindViewHolder(final ViewHolder holder, final int position, final String item) {
+        holder.tvName.setText(item);
+        holder.tvName.setTextColor(Color.RED);
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView tvName;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            tvName = itemView.findViewById(android.R.id.text1);
+        }
     }
 }
 ```
-运行效果如下：
+```
+public class USCompanyAdapterDelegate extends AdapterDelegate<String, USCompanyAdapterDelegate.ViewHolder> {
+
+    @Override
+    public boolean isForViewType(String item, int position) {
+        return item.contains("🇺🇸");
+    }
+
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+        ViewHolder holder = new ViewHolder(view);
+        return holder;
+    }
+
+    @Override
+    public void onBindViewHolder(final ViewHolder holder, final int position, final String item) {
+        holder.tvName.setText(item);
+        holder.tvName.setTextColor(Color.BLUE);
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView tvName;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            tvName = itemView.findViewById(android.R.id.text1);
+        }
+    }
+}
+```
+
+# ViewPager
+## PagerAdapter的使用
+我们先来介绍最普通的PagerAdapter，如果想使用这个PagerAdapter需要重写下面的四个方法： 当然，这只是官方建议，实际上我们只需重写getCount()和isViewFromObject()就可以了~
 
 
-![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606374149814-3632206a-38d6-4699-bb12-28c4bda55714.png#align=left&display=inline&height=244&margin=%5Bobject%20Object%5D&name=7.png&originHeight=244&originWidth=832&size=14323&status=done&style=none&width=832)
+getCount():获得viewpager中有多少个view
+destroyItem():移除一个给定位置的页面。适配器有责任从容器中删除这个视图。 这是为了确保在finishUpdate(viewGroup)返回时视图能够被移除。
+而另外两个方法则是涉及到一个key的东东：
 
+
+instantiateItem(): ①将给定位置的view添加到ViewGroup(容器)中,创建并显示出来 ②返回一个代表新增页面的Object(key),通常都是直接返回view本身就可以了,当然你也可以 自定义自己的key,但是key和每个view要一一对应的关系
+isViewFromObject(): 判断instantiateItem(ViewGroup, int)函数所返回来的Key与一个页面视图是否是 代表的同一个视图(即它俩是否是对应的，对应的表示同一个View),通常我们直接写 return view == object!
+使用示例1：最简单用法
+运行效果图：
+![](https://cdn.nlark.com/yuque/0/2020/jpeg/2863967/1606984696217-1558f67d-6c0f-4c45-9618-8f93312bcb91.jpeg#align=left&display=inline&height=384&margin=%5Bobject%20Object%5D&name=68392114.jpg&originHeight=384&originWidth=216&size=122519&status=done&style=none&width=216)
+关键部分代码：
+
+
+好的，代码写起来也是非常简单的：首先是每个View的布局，一式三份，另外两个View一样：
+
+
+view_one.xml：
+```
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="第一个Page"
+    android:textColor="#000000"
+    android:textSize="18sp"
+    android:textStyle="bold" />
+```
+MyPagerAdapter.java：
+```java
+public class MyPagerAdapter extends PagerAdapter {
+    private ArrayList viewLists;
+    public MyPagerAdapter() {
+    }
+
+    public MyPagerAdapter(ArrayList<View> viewLists) {
+        super();
+        this.viewLists = viewLists;
+    }
+
+    @Override
+    public int getCount() {
+        return viewLists.size();
+    }
+
+    @Override
+    public boolean isViewFromObject(View view, Object object) {
+        return view == object;
+    }
+
+    @Override
+    public Object instantiateItem(ViewGroup container, int position) {
+        container.addView(viewLists.get(position));
+        return viewLists.get(position);
+    }
+
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        container.removeView(viewLists.get(position));
+    }
+}
+```
+接着到Activity了，和以前学的ListView非常类似：
+
+
+OneActivity.java：
+```java
+public class OneActivity extends AppCompatActivity{
+    private ViewPager vpager_one;
+    private ArrayList<View> aList;
+    private MyPagerAdapter mAdapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_one);
+        vpager_one = (ViewPager) findViewById(R.id.vpager_one);
+
+        aList = new ArrayList<View>();
+        LayoutInflater li = getLayoutInflater();
+        aList.add(li.inflate(R.layout.view_one,null,false));
+        aList.add(li.inflate(R.layout.view_two,null,false));
+        aList.add(li.inflate(R.layout.view_three,null,false));
+        mAdapter = new MyPagerAdapter(aList);
+        vpager_one.setAdapter(mAdapter);
+    }
+}
+```
+# 多语言适配
+
+```java
+public class MainActivity extends AppCompatActivity {
+    ImageButton btn_settings;
+    AlertDialog dialog;
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState); 
+       //读取SharedPreferences数据，初始化语言设置
+        setLanguage();
+        getSupportActionBar().hide();
+        setContentView(R.layout.activity_main);
+        btn_settings = (ImageButton) findViewById(R.id.btn_settings);
+        //点击设置按钮进入语言设置
+        btn_settings.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                //创建单选框
+                final AlertDialog.Builder builder = new
+                        AlertDialog.Builder(MainActivity.this);
+                builder.setSingleChoiceItems(new String[]{"Auto", "简体中文"},
+                        getSharedPreferences("language", Context.MODE_PRIVATE).getInt("language",0),
+                        new DialogInterface.OnClickListener() {
+                            //点击单选框某一项以后
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //将选中项存入SharedPreferences，以便重启应用后读取设置
+                                SharedPreferences preferences = getSharedPreferences("language", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putInt("language",i);
+                                editor.apply();
+                                dialog.dismiss();Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                                /* 重新在新的任务栈开启新应用
+                                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
+                                android.os.Process.killProcess(android.os.Process.myPid()); */
+                            }
+                        });
+                dialog = builder.create();
+                dialog.show();
+            }
+        });
+    }
+    private void setLanguage() {
+        //读取SharedPreferences数据，默认选中第一项
+        SharedPreferences preferences = getSharedPreferences("language", Context.MODE_PRIVATE);
+        int language = preferences.getInt("language", 0);
+        //根据读取到的数据，进行设置
+        Resources resources = getResources();
+        DisplayMetrics displayMetrics = resources.getDisplayMetrics();
+        Configuration configuration = resources.getConfiguration();
+        switch (language){
+            case 0:
+                configuration.setLocale(Locale.getDefault());
+                break;
+           case 1:
+                configuration.setLocale( Locale.CHINESE);
+                break;
+            default:
+                break;
+        }
+        resources.updateConfiguration(configuration,displayMetrics);
+    }
+} 
+```
+# Intent 相关
+
+Intent 跳转页面，最常见的就是跳转显示意图的使用，跳转时可以传值，后面的 activity 可以接收，后面的 activity 关闭的时候，也可以将值返回到前一个 activity 中。
+
+跳转页面不需要后面 activity 传值的时候，只需要使用 `startActivity(Intent intent)` 就可以了，如果有接收后面一个 activity 传值的需求，则需要使用 `startActivityForResult(intent, requestCode)`。
+
+下面是源码：
+```
+@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_intent);
+
+        textView = findViewById(R.id.textView);
+
+        findViewById(R.id.button1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textView.setText("");
+                Intent intent = new Intent(IntentActivity.this, IntentResultActivity.class);
+                startActivityForResult(intent, 10010);
+            }
+        });
+
+        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textView.setText("");
+                Intent intent = new Intent(IntentActivity.this, IntentResultActivity.class);
+                intent.putExtra("tag", "这是有值跳转");
+                startActivityForResult(intent, 10010);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 10010 && resultCode == RESULT_OK) {
+            String str = data.getStringExtra("tag");
+            textView.setText(str);
+        }
+    }
+```
+```
+@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_intent_result);
+
+        textView = findViewById(R.id.textView);
+
+        String str = getIntent().getStringExtra("tag");
+        if (str != null) {
+            textView.setText(str);
+        } else {
+            textView.setText("");
+        }
+
+        findViewById(R.id.button1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("tag", "这是有值返回");
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        });
+    }
+```
+
+
+其他相关的资料可以自行查阅
