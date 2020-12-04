@@ -53,6 +53,8 @@ D:\android\android studio
 
 到此下一步，开始疯狂跑安装：
 ![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1606136842946-26c12d76-ac78-4c8d-b92c-2ebdf90016fd.png#align=left&display=inline&height=742&margin=%5Bobject%20Object%5D&originHeight=742&originWidth=984&size=0&status=done&style=none&width=984)
+
+
 选择完成！
 
 
