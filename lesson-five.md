@@ -1,6 +1,11 @@
 # 搭建一个mvp模式的框架
 
 mvp 框架的简单结构
+
+
+![图片1.png](https://cdn.nlark.com/yuque/0/2020/png/2863967/1607301499120-5dc7a644-8559-4885-944f-48a645c7fbff.png#align=left&display=inline&height=557&margin=%5Bobject%20Object%5D&name=%E5%9B%BE%E7%89%871.png&originHeight=557&originWidth=346&size=50843&status=done&style=none&width=346)
+
+
 ## base包：
 #### BaseActivity
 ```java
