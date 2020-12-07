@@ -361,65 +361,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 ```
 
 
-# Message
-
-## handler 处理 message 
-```java
-Message next() {
-        final long ptr = mPtr;
-        if (ptr == 0) {
-            return null;
-        }
-        int pendingIdleHandlerCount = -1; // -1 only during first iteration
-        int nextPollTimeoutMillis = 0;
-        for (;;) {
-            nativePollOnce(ptr, nextPollTimeoutMillis);
-            synchronized (this) {
-                // Try to retrieve the next message.  Return if found.
-                final long now = SystemClock.uptimeMillis();
-                Message prevMsg = null;
-                Message msg = mMessages;
-                if (msg != null && msg.target == null) {
-                    // Stalled by a barrier.  Find the next asynchronous message in the queue.
-                    do {
-                        prevMsg = msg;
-                        msg = msg.next;
-                    } while (msg != null && !msg.isAsynchronous());
-                }
-                if (msg != null) {
-                    if (now < msg.when) {
-                        // Next message is not ready.  Set a timeout to wake up when it is ready.
-                        nextPollTimeoutMillis = (int) Math.min(msg.when - now, Integer.MAX_VALUE);
-                    } else {
-                        // Got a message.
-                        mBlocked = false;
-                        if (prevMsg != null) {
-                            prevMsg.next = msg.next;
-                        } else {
-                            mMessages = msg.next;
-                        }
-                        msg.next = null;
-                        if (DEBUG) Log.v(TAG, "Returning message: " + msg);
-                        msg.markInUse();
-                        return msg;
-                    }
-                } else {
-                    // No more messages.
-                    nextPollTimeoutMillis = -1;
-                }
-                // Process the quit message now that all pending messages have been handled.
-                if (mQuitting) {
-                    dispose();
-                    return null;
-                }
-            }
-            pendingIdleHandlerCount = 0;
-            nextPollTimeoutMillis = 0;
-        }
-    }
-```
-
-
 # 蓝牙调用
 
 ## 蓝牙的简单调用
