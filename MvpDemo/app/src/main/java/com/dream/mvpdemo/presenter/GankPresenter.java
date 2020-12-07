@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.dream.mvpdemo.base.BasePresenter;
 import com.dream.mvpdemo.contract.GankContract;
-import com.dream.mvpdemo.model.http.Fault;
+import com.dream.mvpdemo.model.http.net.Fault;
 import com.dream.mvpdemo.model.http.loader.GankLoader;
 import com.kevin.delegationadapter.DelegationAdapter;
 

@@ -1,4 +1,4 @@
-package com.dream.mvpdemo.model.http;
+package com.dream.mvpdemo.model.http.net;
 
 /**
  * 网络请求结果 基类

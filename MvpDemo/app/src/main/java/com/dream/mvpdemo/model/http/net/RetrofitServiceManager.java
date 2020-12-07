@@ -1,4 +1,6 @@
-package com.dream.mvpdemo.model.http;
+package com.dream.mvpdemo.model.http.net;
+
+import com.dream.mvpdemo.model.http.ApiConfig;
 
 import java.util.concurrent.TimeUnit;
 

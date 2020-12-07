@@ -3,8 +3,8 @@ package com.dream.mvpdemo.model.http.loader;
 import com.dream.mvpdemo.model.bean.GankEntry;
 import com.dream.mvpdemo.model.bean.GankResp;
 import com.dream.mvpdemo.model.http.ApiConfig;
-import com.dream.mvpdemo.model.http.ObjectLoader;
-import com.dream.mvpdemo.model.http.RetrofitServiceManager;
+import com.dream.mvpdemo.model.http.net.ObjectLoader;
+import com.dream.mvpdemo.model.http.net.RetrofitServiceManager;
 
 import java.util.List;
 

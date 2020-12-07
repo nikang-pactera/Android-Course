@@ -1,4 +1,4 @@
-package com.dream.mvpdemo.model.http;
+package com.dream.mvpdemo.model.http.net;
 
 /**
  * 异常处理类，将异常包装成一个 Fault ,抛给上层统一处理

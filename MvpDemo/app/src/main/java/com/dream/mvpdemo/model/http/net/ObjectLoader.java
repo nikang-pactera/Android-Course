@@ -1,4 +1,4 @@
-package com.dream.mvpdemo.model.http;
+package com.dream.mvpdemo.model.http.net;
 
 
 import rx.Observable;
