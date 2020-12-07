@@ -58,6 +58,5 @@ dependencies {
     implementation 'androidx.viewpager:viewpager:1.0.0' // viewpager
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4' // constraintlayout
 
-    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
-    implementation 'androidx.cardview:cardview:1.0.0'// 图片加载
+    implementation 'androidx.cardview:cardview:1.0.0'// cardview
 }

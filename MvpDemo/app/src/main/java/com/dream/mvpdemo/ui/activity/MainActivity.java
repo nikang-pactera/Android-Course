@@ -31,10 +31,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     @Override
     public void getMview() {
         Log.d("print", "我是V层的引用");
-        findViewById(R.id.movie_btn).setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, MovieActivity.class);
-            startActivity(intent);
-        });
 
         findViewById(R.id.award_btn).setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, GankActivity.class);

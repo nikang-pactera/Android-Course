@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.dream.mvpdemo.base.BasePresenter;
 import com.dream.mvpdemo.contract.BluetoothContract;
-import com.dream.mvpdemo.contract.MovieContract;
 
 /**
  * MainPresenter

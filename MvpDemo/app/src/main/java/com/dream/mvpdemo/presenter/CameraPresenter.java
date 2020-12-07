@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.dream.mvpdemo.base.BasePresenter;
 import com.dream.mvpdemo.contract.CameraContract;
-import com.dream.mvpdemo.contract.MovieContract;
 
 /**
  * MainPresenter

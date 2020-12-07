@@ -13,9 +13,10 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import com.dream.mvpdemo.R;
 import com.dream.mvpdemo.base.BaseActivity;
 import com.dream.mvpdemo.contract.GankContract;
+import com.dream.mvpdemo.model.http.Fault;
 import com.dream.mvpdemo.model.http.loader.GankLoader;
 import com.dream.mvpdemo.presenter.GankPresenter;
-import com.dream.mvpdemo.ui.adapter.MovieAdapterDelegate;
+import com.dream.mvpdemo.ui.adapter.GankAdapterDelegate;
 import com.kevin.delegationadapter.DelegationAdapter;
 
 import rx.Subscription;
@@ -59,7 +60,7 @@ public class GankActivity extends BaseActivity<GankPresenter> implements GankCon
 
         delegationAdapter = new DelegationAdapter();
         // 向Adapter中注册委托Adapter
-        delegationAdapter.addDelegate(new MovieAdapterDelegate());
+        delegationAdapter.addDelegate(new GankAdapterDelegate());
         //设置Adapter
         mRecyclerView.setAdapter(delegationAdapter);
         //设置增加或删除条目的动画
@@ -73,7 +74,19 @@ public class GankActivity extends BaseActivity<GankPresenter> implements GankCon
             Log.i("FK", "gank size:" + gankEntries.size());
             delegationAdapter.setDataItems(gankEntries);
             delegationAdapter.notifyDataSetChanged();
-        }, Throwable::printStackTrace);
+        }, throwable -> {
+            Log.e("TAG", "error message:" + throwable.getMessage());
+            if (throwable instanceof Fault) {
+                Fault fault = (Fault) throwable;
+                if (fault.getErrorCode() == 404) {
+                    //错误处理
+                } else if (fault.getErrorCode() == 500) {
+                    //错误处理
+                } else if (fault.getErrorCode() == 501) {
+                    //错误处理
+                }
+            }
+        });
 
         addSubscription(subscription);
     }

@@ -29,7 +29,6 @@
         <activity android:name=".ui.activity.CameraActivity" />
         <activity android:name=".ui.activity.BluetoothActivity" />
         <activity android:name=".ui.activity.GankActivity" />
-        <activity android:name=".ui.activity.MovieActivity" />
         <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

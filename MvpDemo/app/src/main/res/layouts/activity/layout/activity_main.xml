@@ -8,16 +8,9 @@
     tools:context="com.dream.mvpdemo.ui.activity.MainActivity">
 
     <Button
-        android:id="@+id/movie_btn"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:text="电影列表" />
-
-    <Button
         android:id="@+id/award_btn"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_marginTop="40dp"
         android:text="福利列表" />
 
     <Button
