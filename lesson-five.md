@@ -1,3 +1,65 @@
+# 引用第三方框架
+
+## 引用module
+
+
+android中引用别的module需要加入对它的依赖
+
+
+有两种添加方式  
+
+
+### 1.直接修改build.gradle脚本引入
+
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1607328994983-3635f955-34e9-4c26-a721-254301847626.png#align=left&display=inline&height=253&margin=%5Bobject%20Object%5D&name=%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201207160940.png&originHeight=253&originWidth=1133&size=30214&status=done&style=none&width=1133)
+
+
+### 2. android studio集成了这个功能 直接添加
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1607329079791-f6acc645-b1fe-44bc-a9a0-2469cefe0096.png#align=left&display=inline&height=617&margin=%5Bobject%20Object%5D&name=1.png&originHeight=617&originWidth=484&size=33452&status=done&style=none&width=484)
+
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1607329081003-f24c4b2c-82a4-4a30-8fc6-ee8fe35e2ed7.png#align=left&display=inline&height=394&margin=%5Bobject%20Object%5D&name=%E5%9B%BE%E7%89%871.png&originHeight=394&originWidth=710&size=122617&status=done&style=none&width=710)
+
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1607329082372-10f69f7e-d3a2-4c4f-8535-0db24f9edeb0.png#align=left&display=inline&height=494&margin=%5Bobject%20Object%5D&name=%E5%9B%BE%E7%89%872.png&originHeight=494&originWidth=410&size=54010&status=done&style=none&width=410)
+
+
+## 引用 jar
+### 修改 build.gradle
+这种引用方式和和引用 module 方式一致，不做重复介绍
+
+
+### 直接引用
+
+
+通过 Android Studio 工具搜索镜像添加引用
+
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1607329198475-ccce44df-d7f5-448f-ae28-c13522f7d3ae.png#align=left&display=inline&height=617&margin=%5Bobject%20Object%5D&name=1.png&originHeight=617&originWidth=484&size=33452&status=done&style=none&width=484)
+
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1607329200009-540f096d-bc98-4ffa-a189-0efd96460a0b.png#align=left&display=inline&height=536&margin=%5Bobject%20Object%5D&name=2.png&originHeight=536&originWidth=966&size=33543&status=done&style=none&width=966)
+
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1607329201296-8d630a33-6584-4b9d-b485-ea64f3257973.png#align=left&display=inline&height=536&margin=%5Bobject%20Object%5D&name=3.png&originHeight=536&originWidth=966&size=33996&status=done&style=none&width=966)
+
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1607329202303-72616e38-1a96-449a-bd97-8ae21855adaa.png#align=left&display=inline&height=536&margin=%5Bobject%20Object%5D&name=4.png&originHeight=536&originWidth=966&size=36732&status=done&style=none&width=966)
+
+
+### lib 文件夹引用
+
+
+引用已经下载完成的 jar 包
+
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1607329246185-e7792661-c921-4a04-8c36-adc0e8927973.png#align=left&display=inline&height=443&margin=%5Bobject%20Object%5D&name=%E5%9B%BE%E7%89%873.png&originHeight=443&originWidth=471&size=45199&status=done&style=none&width=471)
+
+
+![](https://cdn.nlark.com/yuque/0/2020/png/2863967/1607329247246-fe808ea9-1526-4c1d-9752-9c3d1ce25bc1.png#align=left&display=inline&height=121&margin=%5Bobject%20Object%5D&name=%E5%9B%BE%E7%89%874.png&originHeight=121&originWidth=201&size=11465&status=done&style=none&width=201)
+
+
 # 搭建一个mvp模式的框架
 
 mvp 框架的简单结构
