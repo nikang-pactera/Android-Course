@@ -15,16 +15,15 @@ public class BluetoothPresenter extends BasePresenter<BluetoothContract.View> im
 
     @Override
     public void db() {
-        mDataManager.testDb();
+
     }
 
     @Override
     public void requestNetwork() {
-        mDataManager.testRequestNetwork();
     }
 
     @Override
     public void preference() {
-        mDataManager.testPreference();
+
     }
 }

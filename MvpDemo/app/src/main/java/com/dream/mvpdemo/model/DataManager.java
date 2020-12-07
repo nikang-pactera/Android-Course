@@ -1,17 +1,14 @@
 package com.dream.mvpdemo.model;
 
 import com.dream.mvpdemo.model.db.AppDbHelper;
-import com.dream.mvpdemo.model.http.AppApiHelper;
 import com.dream.mvpdemo.model.preference.AppPreferenceHelper;
 
-public class DataManager implements AppDbHelper, AppApiHelper, AppPreferenceHelper {
+public class DataManager implements AppDbHelper, AppPreferenceHelper {
     private AppDbHelper mAppDbHelper;
-    private AppApiHelper mAppApiHelper;
     private AppPreferenceHelper mAppPreferenceHelper;
 
-    public DataManager(AppDbHelper mAppDbHelper, AppApiHelper appApiHelper, AppPreferenceHelper appPreferenceHelper) {
+    public DataManager(AppDbHelper mAppDbHelper, AppPreferenceHelper appPreferenceHelper) {
         this.mAppDbHelper = mAppDbHelper;
-        this.mAppApiHelper = appApiHelper;
         this.mAppPreferenceHelper = appPreferenceHelper;
     }
 
@@ -21,8 +18,8 @@ public class DataManager implements AppDbHelper, AppApiHelper, AppPreferenceHelp
     }
 
     @Override
-    public void testRequestNetwork() {
-        mAppApiHelper.testRequestNetwork();
+    public void dbTest() {
+        mAppDbHelper.dbTest();
     }
 
     @Override

@@ -33,8 +33,12 @@ public class CameraActivity extends BaseActivity<CameraPresenter> implements Cam
 
     @Override
     protected void initView() {
+        ImageView ivCamera = findViewById(R.id.ivCamera);
+        ivPhoto = findViewById(R.id.ivPhoto);
+
+        ivCamera.setOnClickListener(view -> checkPermissionAndCamera());
+
         mPresenter.getMpresenter();
-        mPresenter.db();
         mPresenter.requestNetwork();
         mPresenter.preference();
     }
@@ -46,10 +50,6 @@ public class CameraActivity extends BaseActivity<CameraPresenter> implements Cam
 
     @Override
     public void getView() {
-        ImageView ivCamera = findViewById(R.id.ivCamera);
-        ivPhoto = findViewById(R.id.ivPhoto);
-
-        ivCamera.setOnClickListener(view -> checkPermissionAndCamera());
     }
 
     /**
@@ -116,6 +116,5 @@ public class CameraActivity extends BaseActivity<CameraPresenter> implements Cam
             captureIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
             startActivityForResult(captureIntent, CAMERA_REQUEST_CODE);
         }
-
     }
 }

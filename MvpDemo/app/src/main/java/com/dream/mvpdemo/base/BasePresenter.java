@@ -5,8 +5,6 @@ import android.util.Log;
 import com.dream.mvpdemo.model.DataManager;
 import com.dream.mvpdemo.model.db.AppDbHelper;
 import com.dream.mvpdemo.model.db.DbHelper;
-import com.dream.mvpdemo.model.http.ApiHelper;
-import com.dream.mvpdemo.model.http.AppApiHelper;
 import com.dream.mvpdemo.model.preference.AppPreferenceHelper;
 import com.dream.mvpdemo.model.preference.PreferenceHelper;
 
@@ -23,8 +21,7 @@ public abstract class BasePresenter<V extends IBaseView> implements IBasePresent
     public BasePresenter() {
         AppDbHelper appDbHelper = new DbHelper();
         AppPreferenceHelper appPreferenceHelper = new PreferenceHelper();
-        AppApiHelper appApiHelper = new ApiHelper();
-        mDataManager = new DataManager(appDbHelper, appApiHelper, appPreferenceHelper);
+        mDataManager = new DataManager(appDbHelper, appPreferenceHelper);
 
         if (sCompositeSubscription == null || sCompositeSubscription.isUnsubscribed()) {
             sCompositeSubscription = new CompositeSubscription();

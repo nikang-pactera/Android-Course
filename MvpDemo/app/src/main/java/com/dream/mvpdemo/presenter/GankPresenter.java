@@ -19,7 +19,6 @@ public class GankPresenter extends BasePresenter<GankContract.View> implements G
 
     @Override
     public void db() {
-        mDataManager.testDb();
     }
 
     @Override
@@ -47,6 +46,6 @@ public class GankPresenter extends BasePresenter<GankContract.View> implements G
 
     @Override
     public void preference() {
-        mDataManager.testPreference();
+
     }
 }

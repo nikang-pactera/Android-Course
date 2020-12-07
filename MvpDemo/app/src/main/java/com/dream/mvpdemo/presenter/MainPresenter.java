@@ -5,11 +5,6 @@ import android.util.Log;
 import com.dream.mvpdemo.base.BasePresenter;
 import com.dream.mvpdemo.contract.MainContract;
 
-/**
- * MainPresenter
- * Created by Administrator on 2018/5/7.
- */
-
 public class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {
 
     @Override
@@ -21,11 +16,12 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
     @Override
     public void db() {
         mDataManager.testDb();
+        mDataManager.dbTest();
     }
 
     @Override
     public void requestNetwork() {
-        mDataManager.testRequestNetwork();
+
     }
 
     @Override
