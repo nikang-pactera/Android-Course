@@ -651,3 +651,69 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 ```
+
+
+# 危险权限
+
+## 动态获取权限
+```java
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        //假设我们需要一个打电话的权限
+        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CALL_PHONE}, 1);
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 1:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    //用户同意了权限,可以进行其他操作
+                } else {
+                    //用户不同意权限
+                }
+                break;
+            default:
+                break;
+        }
+    }
+}
+```
+
+
+# 更多权限
+
+| 权限名称 | 注释 |
+| --- | --- |
+| android.permission.ACCESS_NETWORK_STATE  | 网络状态权限  |
+| android.permission.ACCESS_WIFI_STATE | WIFI网络状态信息权限 |
+| android.permission.BATTERY_STATE | 电池状态权限 |
+| android.permission.BLUETOOTH | 连接匹配的蓝牙设备权限 |
+| android.permission.BLUETOOTH_ADMIN | 发现匹配的蓝牙设备权限 |
+| android.permission.BROADCAST_SMS | 广播收到短信提醒的权限 |
+| android.permission.CALL_PHONE | 拨打电话的权限 |
+| android.permission.CAMERA | 使用相机的权限 |
+| android.permission.CHANGE_NETWORK_STATE | 改变网络状态权限 |
+| android.permission.CHANGE_WIFI_STATE | 改变wifi网络状态权限 |
+| android.permission.DELETE_CACHE_FILES | 允许删除缓存文件权限 |
+| android.permission.DELETE_PACKAGES | 允许删除安装包的权限 |
+| android.permission.VIBRATE | 允许控制振动器的权限 |
+| android.permission.WRITE_SMS | 允许写短信的权限 |
+| android.permission.WRITE_CONTACTS | 允许写用户联系人的权限 |
+| android.permission.FLASHLIGHT | 访问闪光灯的权限 |
+| android.permission.INTERNET | 允许访问网络的权限 |
+| android.permission.MODIFY_AUDIO_SETTINGS | 允许修改全局声音的权限 |
+| android.permission.PROCESS_OUTGOING_CALLS | 允许监听、控制、取消呼出电话的权限 |
+| android.permission.READ_CONTACTS | 允许读取电话薄的权限 |
+| android.permission.READ_OWNER_DATA | 允许读取用户数据的权限 |
+| android.permission.READ_PHONE_STATE | 允许读取手机状态的权限 |
+| android.permission.READ_PHONE_SMS | 允许读取短信息的权限 |
+| android.permission.RECEIVE_SMS | 允许处理、监控、接受短信的权限 |
+| android.permission.RECORD_AUDIO | 允许录音的权限 |
+| android.permission.SEND_SMS | 允许发送短信的权限 |
+| android.permission.SET_ORIENTATION | 设置屏幕方向权限 |
+| android.permission.WRITE_OWNER_DATA | 允许应用程序写用户数据的权限 |
