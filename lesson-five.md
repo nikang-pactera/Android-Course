@@ -567,16 +567,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
-        </provider>
     </application>
 </manifest>
 ```
@@ -675,15 +665,11 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAMERA_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                if (isAndroidQ) {
-                    // Android 10 使用图片uri加载
-                    ivPhoto.setImageURI(mCameraUri);
-                } else {
-                    // 使用图片路径加载
-                    ivPhoto.setImageBitmap(BitmapFactory.decodeFile(mCameraImagePath));
-                }
+                assert data != null;
+                Bitmap bitmap = data.getParcelableExtra("data");
+                ivPhoto.setImageBitmap(bitmap);
             } else {
-                Toast.makeText(this,"取消",Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "取消", Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -716,70 +702,11 @@ public class MainActivity extends AppCompatActivity {
         Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // 判断是否有相机
         if (captureIntent.resolveActivity(getPackageManager()) != null) {
-            File photoFile = null;
-            Uri photoUri = null;
-
-            if (isAndroidQ) {
-                // 适配android 10
-                photoUri = createImageUri();
-            } else {
-                try {
-                    photoFile = createImageFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                if (photoFile != null) {
-                    mCameraImagePath = photoFile.getAbsolutePath();
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        //适配Android 7.0文件权限，通过FileProvider创建一个content类型的Uri
-                        photoUri = FileProvider.getUriForFile(this, getPackageName() + ".fileprovider", photoFile);
-                    } else {
-                        photoUri = Uri.fromFile(photoFile);
-                    }
-                }
-            }
-
-            mCameraUri = photoUri;
-            if (photoUri != null) {
-                captureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-                captureIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-                startActivityForResult(captureIntent, CAMERA_REQUEST_CODE);
-            }
+            captureIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+            captureIntent.addCategory(Intent.CATEGORY_DEFAULT);
+            captureIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+            startActivityForResult(captureIntent, CAMERA_REQUEST_CODE);
         }
-    }
-
-    /**
-     * 创建图片地址uri,用于保存拍照后的照片 Android 10以后使用这种方法
-     *
-     * @return 图片的uri
-     */
-    private Uri createImageUri() {
-        String status = Environment.getExternalStorageState();
-        // 判断是否有SD卡,优先使用SD卡存储,当没有SD卡时使用手机存储
-        if (status.equals(Environment.MEDIA_MOUNTED)) {
-           return getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new ContentValues());
-        } else {
-            return getContentResolver().insert(MediaStore.Images.Media.INTERNAL_CONTENT_URI, new ContentValues());
-        }
-    }
-
-    /**
-     * 创建保存图片的文件
-     * @return
-     * @throws IOException
-     */
-    private File createImageFile() throws IOException {
-        String imageName = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        if (!storageDir.exists()) {
-            storageDir.mkdir();
-        }
-        File tempFile = new File(storageDir, imageName);
-        if (!Environment.MEDIA_MOUNTED.equals(EnvironmentCompat.getStorageState(tempFile))) {
-            return null;
-        }
-        return tempFile;
     }
 }
 ```
