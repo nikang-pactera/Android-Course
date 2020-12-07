@@ -5,11 +5,6 @@ import android.util.Log;
 import com.dream.mvpdemo.base.BasePresenter;
 import com.dream.mvpdemo.contract.BluetoothContract;
 
-/**
- * MainPresenter
- * Created by Administrator on 2018/5/7.
- */
-
 public class BluetoothPresenter extends BasePresenter<BluetoothContract.View> implements BluetoothContract.Presenter {
 
     @Override

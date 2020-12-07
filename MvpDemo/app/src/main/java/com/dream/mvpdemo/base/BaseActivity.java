@@ -1,17 +1,8 @@
 package com.dream.mvpdemo.base;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import rx.Subscription;
-import rx.subscriptions.CompositeSubscription;
-
-/**
- * BaseActivity
- * Created by Administrator on 2018/5/7.
- */
 
 public abstract class BaseActivity<P extends IBasePresenter> extends AppCompatActivity implements IBaseView {
 
@@ -46,7 +37,7 @@ public abstract class BaseActivity<P extends IBasePresenter> extends AppCompatAc
     /**
      * 获取布局id
      *
-     * @return
+     * @return id
      */
     protected abstract int getLayoutId();
 

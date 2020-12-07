@@ -5,11 +5,6 @@ import com.dream.mvpdemo.base.IBaseView;
 import com.dream.mvpdemo.model.http.loader.GankLoader;
 import com.kevin.delegationadapter.DelegationAdapter;
 
-/**
- * MainContract
- * Created by Administrator on 2018/5/7.
- */
-
 public interface GankContract {
 
     interface View extends IBaseView {

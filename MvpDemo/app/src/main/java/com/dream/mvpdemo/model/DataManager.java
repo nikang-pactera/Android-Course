@@ -4,11 +4,6 @@ import com.dream.mvpdemo.model.db.AppDbHelper;
 import com.dream.mvpdemo.model.http.AppApiHelper;
 import com.dream.mvpdemo.model.preference.AppPreferenceHelper;
 
-/**
- * DataManager
- * Created by Administrator on 2018/5/7.
- */
-
 public class DataManager implements AppDbHelper, AppApiHelper, AppPreferenceHelper {
     private AppDbHelper mAppDbHelper;
     private AppApiHelper mAppApiHelper;

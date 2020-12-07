@@ -3,11 +3,6 @@ package com.dream.mvpdemo.contract;
 import com.dream.mvpdemo.base.IBasePresenter;
 import com.dream.mvpdemo.base.IBaseView;
 
-/**
- * MainContract
- * Created by Administrator on 2018/5/7.
- */
-
 public interface CameraContract {
 
     interface View extends IBaseView {

@@ -12,10 +12,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Url;
 import rx.Observable;
 
-/**
- * Created by zhouwei on 16/11/17.
- */
-
 public class GankLoader extends ObjectLoader {
 
     private GankService mGankService;
@@ -32,7 +28,6 @@ public class GankLoader extends ObjectLoader {
     public Observable<List<GankEntry>> getGankList() {
         return observe(mGankService.getGank(ApiConfig.BASE_URL + ApiConfig.GANK_URL)).map(gankResp -> gankResp.results);
     }
-
 
     public interface GankService {
         /**

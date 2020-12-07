@@ -13,11 +13,6 @@ import com.dream.mvpdemo.model.preference.PreferenceHelper;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
-/**
- * BasePresenter
- * Created by Administrator on 2018/5/7.
- */
-
 public abstract class BasePresenter<V extends IBaseView> implements IBasePresenter<V> {
     private static final String TAG = "BasePresenter";
 

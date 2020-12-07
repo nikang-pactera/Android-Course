@@ -2,10 +2,6 @@ package com.dream.mvpdemo.model.preference;
 
 import android.util.Log;
 
-/**
- * Created by Administrator on 2018/5/8.
- */
-
 public class PreferenceHelper implements AppPreferenceHelper {
 
     @Override
