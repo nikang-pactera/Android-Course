@@ -14,17 +14,12 @@ import rx.subscriptions.CompositeSubscription;
  */
 
 public abstract class BaseActivity<P extends IBasePresenter> extends AppCompatActivity implements IBaseView {
-    private static final String TAG = "BaseActivity";
 
     protected P mPresenter;
-    private CompositeSubscription sCompositeSubscription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (sCompositeSubscription == null || sCompositeSubscription.isUnsubscribed()) {
-            sCompositeSubscription = new CompositeSubscription();
-        }
 
         setContentView(getLayoutId());
 
@@ -55,22 +50,4 @@ public abstract class BaseActivity<P extends IBasePresenter> extends AppCompatAc
      */
     protected abstract int getLayoutId();
 
-    /**
-     * 添加Subscription
-     *
-     * @param subscription
-     */
-    public void addSubscription(Subscription subscription) {
-        Log.d(TAG, "add subscription");
-        sCompositeSubscription.add(subscription);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (sCompositeSubscription != null) {
-            Log.d(TAG, "base activity unscbscribe");
-            sCompositeSubscription.unsubscribe();
-        }
-    }
 }

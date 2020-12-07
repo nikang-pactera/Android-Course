@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dream.mvpdemo.R;
 import com.dream.mvpdemo.model.bean.GankEntry;
 import com.kevin.delegationadapter.AdapterDelegate;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.squareup.picasso.Picasso;
 
 public class GankAdapterDelegate extends AdapterDelegate<GankEntry, GankAdapterDelegate.ViewHolder> {

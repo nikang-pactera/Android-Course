@@ -2,6 +2,8 @@ package com.dream.mvpdemo.contract;
 
 import com.dream.mvpdemo.base.IBasePresenter;
 import com.dream.mvpdemo.base.IBaseView;
+import com.dream.mvpdemo.model.http.loader.GankLoader;
+import com.kevin.delegationadapter.DelegationAdapter;
 
 /**
  * MainContract
@@ -19,7 +21,7 @@ public interface GankContract {
 
         void db();
 
-        void requestNetwork();
+        void requestNetwork(GankLoader mGankLoader, DelegationAdapter delegationAdapter);
 
         void preference();
 
